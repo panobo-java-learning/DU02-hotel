@@ -91,9 +91,9 @@ public class Booking {
     public void addGuestToBooking(Guest guest) {
         if (this.room.getNumberOfBeds() > this.listOfGuests.size()) {
             if ( ! this.listOfGuests.contains(guest)) this.listOfGuests.add(guest);
-            else System.out.println("[booking #%03d".formatted(this.reservationID) +"] Warning! <" + guest + "> already present in booking! Nothing to do.");
+            else System.err.println("[booking #%03d".formatted(this.reservationID) +"] Warning! <" + guest + "> already present in booking! Nothing to do.");
         } else {
-            System.out.println("[booking #%03d".formatted(this.reservationID) +"] Warning! It's not possible to add another guest - room is already occupied!");
+            System.err.println("[booking #%03d".formatted(this.reservationID) +"] Warning! It's not possible to add another guest - room is already occupied!");
         }
     }
 
@@ -105,7 +105,7 @@ public class Booking {
         if ( this.listOfGuests.contains(guest)) {
             this.listOfGuests.remove(guest);
         } else {
-            System.out.println("[booking #%03d".formatted(this.reservationID) +"] Warning! <" + guest + "> is not present in the booking! Nothing to do.");
+            System.err.println("[booking #%03d".formatted(this.reservationID) +"] Warning! <" + guest + "> is not present in the booking! Nothing to do.");
         }
     }
     ///endregion
