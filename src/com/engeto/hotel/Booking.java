@@ -71,10 +71,9 @@ public class Booking {
     ///endregion
 
     ///region override
-
     @Override
     public String toString() {
-        String heading_row = "[booking #%03d] Room %d%n".formatted(reservationID, room.getRoomNumber());
+        String heading_row = "[booking #%03d] Room %d %s%n".formatted(reservationID, room.getRoomNumber(), getVacanciesRatio());
         String guestList = getGuestsList();
         String details = "Accomodated from %s to %s.%nVacation type: %s.".formatted(
                 this.startDate, this.endDate, this.vacationType );
@@ -109,7 +108,9 @@ public class Booking {
             System.out.println("[booking #%03d".formatted(this.reservationID) +"] Warning! <" + guest + "> is not present in the booking! Nothing to do.");
         }
     }
+    ///endregion
 
+    ///region Helpers region
     private String getGuestsList() {
         if (this.listOfGuests.size() == 0) return "NO GUESTS IN THE BOOKING!\n";
         String msg = "";
@@ -117,6 +118,11 @@ public class Booking {
             msg += "* %s %s%n".formatted(guest.getName(), guest.getSurname());
         }
         return msg;
+    }
+
+    private String getVacanciesRatio() {
+        int freeBeds = this.room.getNumberOfBeds() - this.listOfGuests.size();
+        return "(%d/%d beds available)".formatted(freeBeds, this.room.getNumberOfBeds());
     }
     ///endregion
 
