@@ -2,7 +2,6 @@ import com.engeto.hotel.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Main {
 
@@ -26,18 +25,17 @@ public class Main {
 
         ///region App - record bookings
         Booking reservation1 = new Booking(room1,
-                new ArrayList<>(),  // jak to napsat lepe?
+                guest1,  // jak to napsat lepe?
                 LocalDate.of(2021, 7, 19),
                 LocalDate.of(2021, 7, 26),
                 VacationType.WORKING );
-        reservation1.addGuestToBooking(guest1);
+//        reservation1.addGuestToBooking(guest1);
 
         Booking reservation2 = new Booking(room3,
-                new ArrayList<>(),  // jak to napsat lepe?
+                guest1,  // jak to napsat lepe?
                 LocalDate.of(2021, 9, 1),
                 LocalDate.of(2021, 9, 14),
                 VacationType.RECREATIVE );
-        reservation2.addGuestToBooking(guest1);
         reservation2.addGuestToBooking(guest2);
 
         BookingsDB bookingsDB = new BookingsDB();
@@ -46,7 +44,7 @@ public class Main {
         ///endregion
 
         ///region Report output
-        System.out.println("\n-------\nReport:\n-------");
+        System.out.println("\n---------------------\nReport ( " + LocalDate.now() + "):\n---------------------");
         for (Booking booking : bookingsDB.getBookingsDB() ) {
             System.out.println(booking);
             System.out.println();

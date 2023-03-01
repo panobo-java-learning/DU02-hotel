@@ -10,7 +10,7 @@ public class Booking {
 
     ///region attributes
     private Room room;
-    private List<Guest> listOfGuests = new ArrayList<>();
+    private List<Guest> listOfGuests;
     private LocalDate startDate;
     private LocalDate endDate;
     private VacationType vacationType;
@@ -18,13 +18,15 @@ public class Booking {
     ///endregion
 
     ///region constructors
-    public Booking(Room room, List<Guest> listOfGuests, LocalDate startDate, LocalDate endDate, VacationType vacationType) {
-        this.reservationID = reservationNextID++;
+    public Booking(Room room, Guest mainGuest, LocalDate startDate, LocalDate endDate, VacationType vacationType) {
         this.room = room;
-        this.listOfGuests = listOfGuests;
         this.startDate = startDate;
         this.endDate = endDate;
         this.vacationType = vacationType;
+
+        this.reservationID = reservationNextID++;
+        this.listOfGuests = new ArrayList<>();
+        this.listOfGuests.add(mainGuest);
     }
     ///endregion
 
