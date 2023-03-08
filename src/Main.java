@@ -26,8 +26,8 @@ public class Main {
         ///region App - record bookings
         Booking reservation1 = new Booking(room1,
                 guest1,  // jak to napsat lepe?
-                LocalDate.of(2021, 7, 19),
-                LocalDate.of(2021, 7, 26),
+                LocalDate.of(2021, 9, 19),
+                LocalDate.of(2021, 9, 26),
                 VacationType.WORKING );
 //        reservation1.addGuestToBooking(guest1);
 
@@ -38,9 +38,25 @@ public class Main {
                 VacationType.RECREATIVE );
         reservation2.addGuestToBooking(guest2);
 
+        Booking reservation3 = new Booking(room1,  // another booking to room1, different date
+                guest1,  // jak to napsat lepe?
+                LocalDate.of(2021, 9, 27),
+                LocalDate.of(2021, 9, 29),
+                VacationType.RECREATIVE );
+        reservation2.addGuestToBooking(guest2);
+
+        Booking reservation4 = new Booking(room1,  // another booking to room1, overlaping date
+                guest1,  // jak to napsat lepe?
+                LocalDate.of(2021, 9, 16),
+                LocalDate.of(2021, 9, 22),
+                VacationType.RECREATIVE );
+        reservation2.addGuestToBooking(guest2);
+
         BookingsDB bookingsDB = new BookingsDB();
-        bookingsDB.add(reservation1);
-        bookingsDB.add(reservation2);
+        System.out.println("Rezervace 1: " + bookingsDB.add(reservation1));
+        System.out.println("Rezervace 2: " + bookingsDB.add(reservation2));
+        System.out.println("Rezervace 3: " + bookingsDB.add(reservation3));
+        System.out.println("Rezervace 4: " + bookingsDB.add(reservation4));
         ///endregion
 
         ///region Report output
@@ -50,6 +66,21 @@ public class Main {
             System.out.println();
         }
         ///endregion
+
+
+        /* TEST
+         * // 19. - 26.
+         * Booking reservation3 = new Booking(room1,
+         *         guest1,  // jak to napsat lepe?
+         *         LocalDate.of(2021, 7, 10),
+         *         LocalDate.of(2021, 7, 30),
+         *         VacationType.WORKING );
+         * BookingsDB testing = new BookingsDB();
+         * System.out.println(
+         *         testing.isTimeOverlaping(reservation1, reservation3));
+         * // tested!!! OK!!!!
+         */
+
     }
 }
 
